@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "859965207713",
+    "firebase_url": "https://giris-a7e42.firebaseio.com",
+    "project_id": "giris-a7e42",
+    "storage_bucket": "giris-a7e42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859965207713:android:a9a74b809b35d917b06ce0",
+        "android_client_info": {
+          "package_name": "com.example.giris"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859965207713-sck7m6eo4vhi9ti972fbu9jclqe2htqi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.giris",
+            "certificate_hash": "0388c97b874631bd168f213f52e3613843da598d"
+          }
+        },
+        {
+          "client_id": "859965207713-2ttrjl5m14en72efaq042ps5pglvcm1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqVlMCspAnVpVMuCh5VjilhTe6cvHpJhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859965207713-2ttrjl5m14en72efaq042ps5pglvcm1e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

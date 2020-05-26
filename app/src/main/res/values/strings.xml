@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SenSoft</string>
+    <string name="title_home">Anasayfa</string>
+    <string name="title_reminder">Hatırlatmalar</string>
+    <string name="title_notifications">Bildirimler</string>
+    <string name="title_external_sound">Dış Ses</string>
+    <string name="title_settings">Ayarlar</string>
+    <string name="title_bluetooth">Bluetooth</string>
+    <string name="title_Sensoft">SenSoft - Sense Software </string>
+</resources>

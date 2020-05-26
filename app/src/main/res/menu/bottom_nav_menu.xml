@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_reminder"
+        android:icon="@drawable/icon_reminder"
+        android:title="@string/title_reminder" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/icon_notification"
+        android:title="@string/title_notifications" />
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/icon_home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_external_sound"
+        android:icon="@drawable/icon_external_sound"
+        android:title="@string/title_external_sound" />
+
+    <item
+        android:id="@+id/navigation_bluetooth"
+        android:icon="@drawable/icon_bluetooth"
+        android:title="@string/title_bluetooth" />
+
+</menu>
