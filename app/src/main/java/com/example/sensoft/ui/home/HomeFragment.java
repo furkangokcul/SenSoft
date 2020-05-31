@@ -1,51 +1,48 @@
 package com.example.sensoft.ui.home;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.NotificationManager;
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import butterknife.ButterKnife;
 
 import com.example.sensoft.R;
+import com.example.sensoft.SpeechAPI.NotificationApp;
 import com.example.sensoft.SpeechAPI.SpeechAPI;
 import com.example.sensoft.SpeechAPI.Titresim;
 import com.example.sensoft.SpeechAPI.VoiceRecorder;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
+
+import static com.example.sensoft.SpeechAPI.NotificationApp.CHANNEL_1_ID;
 
 public class HomeFragment extends Fragment{
 
+    private NotificationManagerCompat notificationManager;
     private HomeViewModel homeViewModel;
     private static final String DEVICE_ADDRESS_CODE = "EXTRA_ADDRESS";
     private static String EXTRA_ADDRESS;
@@ -96,6 +93,7 @@ public class HomeFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        notificationManager = NotificationManagerCompat.from(getActivity());
         if (getArguments() != null) {
             EXTRA_ADDRESS = getArguments().getString(DEVICE_ADDRESS_CODE);
             if(EXTRA_ADDRESS != null){
@@ -124,7 +122,8 @@ public class HomeFragment extends Fragment{
         //uyarikelimeleri.add( 8,"selam" );
         //uyarikelimeleri.add( 9,"gelir misin" );
         //uyarikelimeleri.add( 10,"gider misin" );
-        uyarikelimeleri.add( 1,"İmdat" );
+        uyarikelimeleri.add( 1,"Furkan" );
+        uyarikelimeleri.add( 2,"Merhaba" );
         //uyarikelimeleri.add( 12,"Selam" );
         //uyarikelimeleri.add( 13,"Merhaba " );
         //uyarikelimeleri.add( 14,"dikkat" );
@@ -217,6 +216,7 @@ public class HomeFragment extends Fragment{
             if(!TextUtils.isEmpty( text_dinlenen_ses ))
             {
                 getActivity().runOnUiThread( new Runnable() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void run() {
                         if(isFinal)
@@ -236,13 +236,15 @@ public class HomeFragment extends Fragment{
                                     veri_gonder(33);
                                     Titresim titret = new Titresim();
                                     titret.titrestir( getContext() );
-                                    NotificationCompat.Builder notificationBuilder= new NotificationCompat.Builder(getContext());
-                                    notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
-                                    notificationBuilder.setContentTitle( (CharSequence) uyarikelimeleri.get( i ) );
-                                    notificationBuilder.setContentText("SenSoft Uyarıyor");
-                                    notificationBuilder.setTicker("Etrafınızda İmdat Diye Bağıran Biri Var. Lütfen Etrafına Bak");
-                                    NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE );
-                                    mNotificationManager.notify( 001,notificationBuilder.build() );
+                                    Notification notification = new NotificationCompat.Builder(getActivity(),CHANNEL_1_ID)
+                                            .setSmallIcon(R.drawable.logo)
+                                            .setContentTitle(String.valueOf(uyarikelimeleri.get( i )))
+                                            .setContentText("Etrafınızda İmdat Diye Bağıran Biri Var. Lütfen Etrafına Bak")
+                                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                                            .build();
+                                    notificationManager.notify(1,notification);
+                                    break;
                                 }
                             }
 
